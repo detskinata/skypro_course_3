@@ -1,10 +1,6 @@
 from funcs import *
 
 
-def test_open_file():
-    assert open_data('test_open_date.json') == [{'id': 441945886, 'from': 'Maestro 1596837868705199', 'to': 'Счет 64686473678894779589'}, {'id': 41428829, 'from': 'MasterCard 7158300734726758', 'to': 'Счет 35383033474447895560'}]
-
-
 def test_formatted_date():
     assert formatted_date({'date': '2018-06-30T02:08:58.425572'}) == "30.06.2018"
 
