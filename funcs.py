@@ -38,7 +38,7 @@ def get_sender(transaction_data):
         return f"Данные об отправителе отсутствуют"
     else:
         sender = sender.split()
-        return f"{' '.join(sender[:-1])} {sender[-1][:4]} {sender[-1][0:2]}** **** {sender[-1][-4:]}"
+        return f"{' '.join(sender[:-1])} {sender[-1][:4]} {sender[-1][4:6]}** **** {sender[-1][-4:]}"
 
 
 def get_recipient(transaction_data):
