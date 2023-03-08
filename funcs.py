@@ -4,8 +4,8 @@ from datetime import date
 
 def open_file(file_json):
     with open(file_json, encoding='UTF-8') as file:
-        open_file = json.load(file)
-        return open_file
+        data_json = json.load(file)
+        return data_json
 
 
 def sorted_executed(data_json):
@@ -13,10 +13,10 @@ def sorted_executed(data_json):
     for i in data_json:
         if i == {}:
             continue
-        if i['state'] == 'EXECUTED':
+        if i['state'] == "EXECUTED":
             sorted_list.append(i)
-        sorted_list.sort(key=lambda dictionary: dictionary['date'], reverse=True)
-        return sorted_list[:5]
+    sorted_list.sort(key=lambda dictionary: dictionary['date'], reverse=True)
+    return sorted_list[:5]
 
 
 def formatted_date(transaction_data):
@@ -32,18 +32,18 @@ def get_description(transaction_data):
     return description
 
 
-def get_sender(transaction_date):
+def get_sender(transaction_data):
     sender = transaction_data.get('from')
     if sender == None:
         return f"Данные об отправителе отсутствуют"
     else:
         sender = sender.split()
-        return f"{' '.join(sender[:-1])} {sender[-1][0:2]}** **** {sender[-1][-4:]}"
+        return f"{' '.join(sender[:-1])} {sender[-1][:4]} {sender[-1][0:2]}** **** {sender[-1][-4:]}"
 
 
 def get_recipient(transaction_data):
     recipient = transaction_data.get("to")
-    return f"Данные о получателе отсутствуют" if recipient == None else f"{' '.join(recipient.split()[:-1])} **{recipient[-4:]}
+    return f"Данные о получателе отсутствуют" if recipient == None else f"{' '.join(recipient.split()[:-1])} **{recipient[-4:]}"
 
 
 def get_transfer_amount(transaction_data):
@@ -54,7 +54,6 @@ def get_transfer_amount(transaction_data):
 def get_currency(transaction_data):
     currency = transaction_data['operationAmount']['currency'].get('name')
     return currency
-
 
 
 
